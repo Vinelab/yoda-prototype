@@ -2,16 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Response;
 use Illuminate\Http\Request;
-use App\Operations\Article\FetchArticlesOperation;
-use App\Operations\Article\DisplayCreateArticleFormOperation;
+use App\Operations\Articles\ListPublishedArticlesOperation;
+use App\Operations\Articles\DisplayCreateArticleFormOperation;
 
 class ArticleController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
-        return $this->dispatch(new FetchArticlesOperation($request));
+        return $this->dispatch(new ListPublishedArticlesOperation());
     }
 
     public function create(Request $request)

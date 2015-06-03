@@ -31,18 +31,10 @@ class Operation implements SelfHandling
      */
     protected $request;
 
-    /**
-     * Constructor
-     *
-     * @param \Illuminate\Http\Request $request
-     */
-    public function __construct(Request $request)
+    public function handle(Request $request)
     {
         $this->request = $request;
-    }
 
-    public function handle()
-    {
         $model = null;
 
         if ($this->model) {
@@ -87,7 +79,7 @@ class Operation implements SelfHandling
                 $values = array_merge($values, $args);
             }
 
-            $values = $this->dispatchFrom('App\Commands\\'.$command, $this->request, $values);
+            $data = $this->dispatchFrom($command, $this->request, $values);
         }
 
         return $values;

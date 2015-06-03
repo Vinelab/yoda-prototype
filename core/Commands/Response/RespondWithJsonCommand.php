@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Commands\Response;
+namespace App\Core\Commands\Response;
 
 use App\Commands\Command;
 use Illuminate\Routing\ResponseFactory;

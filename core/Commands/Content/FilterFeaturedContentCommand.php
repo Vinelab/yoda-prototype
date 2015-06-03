@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Commands\Content;
+namespace App\Core\Commands\Content;
 
 use App\Commands\Command;
 use Illuminate\Contracts\Bus\SelfHandling;
@@ -11,18 +11,18 @@ use Illuminate\Contracts\Bus\SelfHandling;
  * @category Command
  * @author Abed Halawi <abed.halawi@vinelab.com>
  */
-class QueryFeaturedContentCommand extends Command implements SelfHandling
+class FilterFeaturedContentCommand extends Command implements SelfHandling
 {
-    public function __construct($data, $featured = false)
+    public function __construct($data, $is_featured = false)
     {
         $this->query = $data;
-        $this->featured = (bool) $featured;
+        $this->isFeatured = (bool) $is_featured;
     }
 
     public function handle()
     {
-        if ($this->featured) {
-            $this->query->featured = true;
+        if ($this->isFeatured) {
+            $this->query->featured();
         }
 
         return $this->query;

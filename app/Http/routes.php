@@ -24,3 +24,4 @@ Route::get('/y', 'ArticleController@index');
 
 Route::get('/articles/create', 'ArticleController@create');
 Route::post('/articles', 'ArticleController@store');
+Route::get('/articles', 'ArticleController@index');
