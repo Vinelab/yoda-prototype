@@ -11,17 +11,6 @@
 |
 */
 
-Route::get('/', 'WelcomeController@index');
-
-Route::get('home', 'HomeController@index');
-
-Route::controllers([
-	'auth' => 'Auth\AuthController',
-	'password' => 'Auth\PasswordController',
-]);
-
-Route::get('/y', 'ArticleController@index');
-
-Route::get('/articles/create', 'ArticleController@create');
-Route::post('/articles', 'ArticleController@store');
-Route::get('/articles', 'ArticleController@index');
+$app->get('/', function() use ($app) {
+    return $app->welcome();
+});
