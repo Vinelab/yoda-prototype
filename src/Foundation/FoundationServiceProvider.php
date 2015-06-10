@@ -25,7 +25,6 @@ class FoundationServiceProvider extends ServiceProvider
 
         $this->registerServiceProvidersInDirectory($directories);
         $this->loadRoutesInDirectories($directories);
-        dd();
     }
 
     /**

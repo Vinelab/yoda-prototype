@@ -8,6 +8,6 @@ class CmsServiceProvider extends FoundationServiceProvider
 {
     public function register()
     {
-        var_dump('registering CmsServiceProvider');
+        // var_dump('registering CmsServiceProvider');
     }
 }

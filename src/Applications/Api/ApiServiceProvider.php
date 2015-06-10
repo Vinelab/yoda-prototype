@@ -8,6 +8,6 @@ class ApiServiceProvider extends FoundationServiceProvider
 {
     public function register()
     {
-        var_dump('registering ApiServiceProvider');
+        // var_dump('registering ApiServiceProvider');
     }
 }

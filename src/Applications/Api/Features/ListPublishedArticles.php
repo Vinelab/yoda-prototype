@@ -1,10 +1,10 @@
 <?php
 
-namespace Sample\Applications\Api\UseCases;
+namespace Sample\Applications\Api\Features;
 
-use Sample\Foundation\UseCase;
+use Sample\Foundation\Feature;
 
-class ListPublishedArticles extends UseCase
+class ListPublishedArticles extends Feature
 {
         protected $commands = [
             'Sample\Domains\Article\Commands\BuildPublishedArticlesQuery',

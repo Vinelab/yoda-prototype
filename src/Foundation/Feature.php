@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Contracts\Bus\Dispatcher;
 use Illuminate\Contracts\Bus\SelfHandling;
 
-class UseCase implements SelfHandling
+class Feature implements SelfHandling
 {
     /**
      * The model involved in this operation
