@@ -62,6 +62,11 @@ class Feature implements SelfHandling
         return $this->commands;
     }
 
+    /**
+     * @param $data
+     *
+     * @return array
+     */
     public function dispatchCommands($data)
     {
         // marshal and dispatch the commands
