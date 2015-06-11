@@ -77,6 +77,10 @@ class FoundationServiceProvider extends ServiceProvider
         $directories = $finder->directories()->name('views')->depth('== 2');
         foreach ($directories as $directory) {
             $view->addLocation($directory->getPathName());
+            // get the parent of the parent directory, namely the app directory such as '[app]/resources/views'
+            /** @todo support camelCase to show as camel-case in namespace */
+            $namespace = strtolower($directory->getPathInfo()->getPathInfo()->getBaseName());
+            $view->addNamespace($namespace, $directory->getPathName());
         }
     }
 
