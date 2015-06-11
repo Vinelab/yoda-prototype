@@ -1,18 +1,10 @@
 @extends('layout')
 
 @section('content')
-<div class="container">
-	<div class="row">
-		<div class="col-md-10 col-md-offset-1">
-			<div class="panel panel-default">
-				<div class="panel-heading">Home</div>
-
-				<div class="panel-body">
-					Helloz
-				</div>
-
-			</div>
-		</div>
-	</div>
-</div>
+    <div class="container">
+        <div class="col-md-4">
+            <h2>Helloz</h2>
+            <p>I am sample</p>
+        </div>
+    </div>
 @endsection

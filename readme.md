@@ -11,5 +11,5 @@
 
 2. run the sever
 
-`php artisan art serve --host=sample.dev --port=8000`
+`php artisan serve --host=sample.dev --port=8000`
 

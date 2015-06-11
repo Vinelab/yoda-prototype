@@ -14,6 +14,7 @@ use Sample\Foundation\Feature;
 class DisplayCreateNewArticleForm extends Feature
 {
     protected $commands = [
-        'Sample\Applications\Cms\Resources\Commands\NewArticleView'
+        ['Sample\Domains\Core\Commands\Views\DisplayView', ['view' => 'cms::home']]
     ];
+
 }
