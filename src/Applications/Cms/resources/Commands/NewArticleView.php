@@ -16,7 +16,7 @@ class NewArticleView extends Command implements SelfHandling
 {
     public function handle()
     {
-        return view('cms::home');
+        return view('Cms::home');
     }
 
 
