@@ -23,8 +23,9 @@ class FoundationServiceProvider extends ServiceProvider
         $finder = new Finder();
         $directories = $finder->in(__DIR__.'/../Applications')->depth('== 1');
 
-        $this->registerServiceProvidersInDirectory($directories);
+        $this->registerServiceProvidersInDirectories($directories);
         $this->loadRoutesInDirectories($directories);
+        $this->loadViewsInDirectories($directories);
     }
 
     /**
@@ -34,7 +35,7 @@ class FoundationServiceProvider extends ServiceProvider
      *
      * @param Symfony\Component\Finder\Finder  $directories
      */
-    protected function registerServiceProvidersInDirectory(Finder $directories)
+    protected function registerServiceProvidersInDirectories(Finder $directories)
     {
         $files = $directories->files()->name('*ServiceProvider.php');
         // go through the directories inside the Applications directory
@@ -62,6 +63,20 @@ class FoundationServiceProvider extends ServiceProvider
         $files = $directories->files()->name('*routes.php')->depth('== 2');
         foreach ($files as $file) {
             require $file->getPathName();
+        }
+    }
+
+    /**
+     * Add the location of the views folder inside each app.
+     *
+     * @param  \Symfony\Component\Finder\Finder $finder
+     */
+    protected function loadViewsInDirectories(Finder $finder)
+    {
+        $view = $this->app['view'];
+        $directories = $finder->directories()->name('views')->depth('== 2');
+        foreach ($directories as $directory) {
+            $view->addLocation($directory->getPathName());
         }
     }
 

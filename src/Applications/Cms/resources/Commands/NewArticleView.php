@@ -2,7 +2,6 @@
 
 namespace Sample\Applications\Cms\Resources\Commands;
 
-use Illuminate\View\View;
 use Sample\Foundation\Command;
 use Illuminate\Contracts\Bus\SelfHandling;
 
@@ -15,20 +14,9 @@ use Illuminate\Contracts\Bus\SelfHandling;
  */
 class NewArticleView extends Command implements SelfHandling
 {
-
-//    public function __construct(
-//        View $view
-//    ) {
-//         $this->view = $view;
-//    }
-
-    public function handle(View $view)
+    public function handle()
     {
-//        $this->view->addLocation('src/Applications/Cms/Resources/Views');
-
-        // return the view
-//        return view()->file('/Users/mz/Codes/Projects/architecture-prototypes/lumen/yoda-prototype/src/Applications/Cms/Resources/Views/home.blade.php');
-        return $view->make('home');
+        return view('home');
     }
 
 

@@ -92,6 +92,6 @@ class Feature implements SelfHandling
             $data = $this->dispatcher->dispatchFrom($command, $this->request, $values);
         }
 
-        return $values;
+        return $data;
     }
 }
