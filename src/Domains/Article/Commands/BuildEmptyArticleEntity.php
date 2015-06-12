@@ -15,17 +15,6 @@ use Illuminate\Contracts\Bus\SelfHandling;
  */
 class BuildEmptyArticleEntity extends Command implements SelfHandling
 {
-
-    /**
-     * @param        $data
-     * @param string $title
-     */
-    public function __construct($data, $title = 'default')
-    {
-        $this->query = $data;
-        $this->title = $title;
-    }
-
     /**
      * @param \Sample\Domains\Article\Entities\Article $article
      *
@@ -33,7 +22,6 @@ class BuildEmptyArticleEntity extends Command implements SelfHandling
      */
     public function handle(Article $article)
     {
-//        dd($this->title);
         return $article;
     }
 }

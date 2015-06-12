@@ -14,6 +14,8 @@ use Sample\Foundation\Feature;
 class StoreNewArticle extends Feature
 {
     protected $commands = [
-        'Sample\Domains\Article\Commands\BuildEmptyArticleEntity'
+        'Sample\Domains\Article\Commands\BuildEmptyArticleEntity',
+        'Sample\Domains\Article\Commands\FormatArticleTitle',
+        'Sample\Domains\Article\Commands\FormatArticleBody'
     ];
 }
