@@ -30,6 +30,7 @@ class ArticleController extends Controller
      */
     public function storeNewArticle()
     {
+        dd('aaaa');
         return $this->dispatch(new StoreNewArticle());
     }
 }

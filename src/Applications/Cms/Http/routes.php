@@ -5,5 +5,5 @@ $app->group([
     'domain'    => '*.cms.sample.*'
 ], function ($app) {
     $app->get('/articles/create', 'ArticleController@displayCreateNewArticleForm');
-    $app->get('/articles/store', 'ArticleController@storeNewArticle');
+    $app->post('/articles/store', 'ArticleController@storeNewArticle');
 });
