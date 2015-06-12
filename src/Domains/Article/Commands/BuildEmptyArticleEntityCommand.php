@@ -9,11 +9,11 @@ use Illuminate\Contracts\Bus\SelfHandling;
 /**
  * return the empty entity
  *
- * @category
+ * @category Command
  * @package Sample\Domains\Article\Commands
  * @author  Mahmoud Zalt <mahmoud@vinelab.com>
  */
-class BuildEmptyArticleEntity extends Command implements SelfHandling
+class BuildEmptyArticleEntityCommand extends Command implements SelfHandling
 {
     /**
      * @param \Sample\Domains\Article\Entities\Article $article

@@ -2,6 +2,8 @@
 
 namespace Sample\Domains\Article\Services;
 
+use Sample\Foundation\Service;
+
 /**
  * Class StringFormatter
  *
@@ -9,7 +11,7 @@ namespace Sample\Domains\Article\Services;
  * @package Sample\Domains\Article\Services
  * @author  Mahmoud Zalt <mahmoud@vinelab.com>
  */
-class StringFormatter // extends Service
+class StringFormatterService extends Service
 {
     /**
      * @param $string

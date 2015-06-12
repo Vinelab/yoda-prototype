@@ -2,12 +2,20 @@
 
 namespace Sample\Foundation;
 
-use Illuminate\Http\Request;
 use Illuminate\Contracts\Bus\Dispatcher;
 use Illuminate\Contracts\Bus\SelfHandling;
+use Illuminate\Http\Request;
 
+/**
+ * Class Feature
+ *
+ * @category
+ * @package Sample\Foundation
+ * @author  Abed Halawi <abed.halawi@vinelab.com>
+ */
 class Feature implements SelfHandling
 {
+
     /**
      * The model involved in this operation
      *
@@ -45,7 +53,7 @@ class Feature implements SelfHandling
 
         if ($this->model) {
             // TODO: Change this to support multiple models
-            $model = 'App\\'.$this->model;
+            $model = 'App\\' . $this->model;
             $model = new $model;
         }
 
@@ -70,8 +78,7 @@ class Feature implements SelfHandling
     public function dispatchCommands($data)
     {
         // marshal and dispatch the commands
-        foreach ($this->getCommands() as $command)
-        {
+        foreach ($this->getCommands() as $command) {
             // keep wrapping values with data as expected by commands
             $values = compact('data');
 

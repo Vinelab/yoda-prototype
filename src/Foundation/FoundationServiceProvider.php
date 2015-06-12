@@ -2,8 +2,8 @@
 
 namespace Sample\Foundation;
 
-use Symfony\Component\Finder\Finder;
 use Illuminate\Support\ServiceProvider;
+use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
 
 /**
@@ -11,17 +11,18 @@ use Symfony\Component\Finder\SplFileInfo;
  *
  * @category Provider
  *
- * @author Abed Halawi <abed.halawi@vinelab.com>
+ * @author   Abed Halawi <abed.halawi@vinelab.com>
  */
 class FoundationServiceProvider extends ServiceProvider
 {
+
     protected $baseNamespace = 'Sample\\';
 
     public function register()
     {
         // go into each Applications's first level directory and register every service provider in there
         $finder = new Finder();
-        $directories = $finder->in(__DIR__.'/../Applications')->depth('== 1');
+        $directories = $finder->in(__DIR__ . '/../Applications')->depth('== 1');
 
         $this->registerServiceProvidersInDirectories($directories);
         $this->loadRoutesInDirectories($directories);
@@ -33,7 +34,7 @@ class FoundationServiceProvider extends ServiceProvider
      * It will search through the directories at the root level for
      * files with their names ending with "ServiceProvider.php".
      *
-     * @param Symfony\Component\Finder\Finder  $directories
+     * @param Symfony\Component\Finder\Finder $directories
      */
     protected function registerServiceProvidersInDirectories(Finder $directories)
     {
@@ -53,7 +54,7 @@ class FoundationServiceProvider extends ServiceProvider
     /**
      * Load the routes files from the given directories.
      *
-     * @param \Symfony\Component\Finder\Finder  $directories
+     * @param \Symfony\Component\Finder\Finder $directories
      */
     protected function loadRoutesInDirectories(Finder $directories)
     {
@@ -87,8 +88,8 @@ class FoundationServiceProvider extends ServiceProvider
     /**
      * Get the fully qualified namespace for the service provider class.
      *
-     * @param \Symfony\Component\Finder\SplFileInfo  $directory
-     * @param \Symfony\Component\Finder\SplFileInfo  $file
+     * @param \Symfony\Component\Finder\SplFileInfo $directory
+     * @param \Symfony\Component\Finder\SplFileInfo $file
      *
      * @return string
      */
@@ -96,13 +97,14 @@ class FoundationServiceProvider extends ServiceProvider
     {
         $parentDirectory = $this->getParentDirectoryForFile($file);
 
-        return $this->baseNamespace.'Applications\\'.$parentDirectory.'\\'.str_replace('.php', '', $file->getBaseName());
+        return $this->baseNamespace . 'Applications\\' . $parentDirectory . '\\' . str_replace('.php', '',
+            $file->getBaseName());
     }
 
     /**
      * Get the parent directory of the given file instance.
      *
-     * @param \Symfony\Component\Finder\SplFileInfo  $file
+     * @param \Symfony\Component\Finder\SplFileInfo $file
      *
      * @return string
      */

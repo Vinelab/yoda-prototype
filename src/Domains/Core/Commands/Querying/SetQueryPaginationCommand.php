@@ -2,18 +2,20 @@
 
 namespace Sample\Domains\Core\Commands\Querying;
 
-use Sample\Foundation\Command;
 use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Foundation\Bus\DispatchesCommands;
+use Sample\Foundation\Command;
 
 /**
  * Set the pagination parameters on the given query.
  *
  * @category Command
- * @author Abed Halawi <abed.halawi@vinelab.com>
+ * @author   Abed Halawi <abed.halawi@vinelab.com>
+ * @author   Mahmoud Zalt <mahmoud@vinelab.com>
  */
-class SetQueryPagination extends Command implements SelfHandling
+class SetQueryPaginationCommand extends Command implements SelfHandling
 {
+
     use DispatchesCommands;
 
     public function __construct($data, $limit = 0, $offset = 0)

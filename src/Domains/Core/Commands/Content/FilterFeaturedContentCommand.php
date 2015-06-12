@@ -2,21 +2,22 @@
 
 namespace Sample\Domains\Core\Commands\Content;
 
-use Sample\Foundation\Command;
 use Illuminate\Contracts\Bus\SelfHandling;
+use Sample\Foundation\Command;
 
 /**
  * Add featured content specific query when found.
  *
  * @category Command
- * @author Abed Halawi <abed.halawi@vinelab.com>
+ * @author   Abed Halawi <abed.halawi@vinelab.com>
  */
-class FilterFeaturedContent extends Command implements SelfHandling
+class FilterFeaturedContentCommand extends Command implements SelfHandling
 {
+
     public function __construct($data, $is_featured = false)
     {
         $this->query = $data;
-        $this->isFeatured = (bool) $is_featured;
+        $this->isFeatured = (bool)$is_featured;
     }
 
     public function handle()

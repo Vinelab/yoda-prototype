@@ -3,33 +3,34 @@
 namespace Sample\Domains\Article\Commands;
 
 use Illuminate\Contracts\Bus\SelfHandling;
-use Sample\Domains\Article\Services\StringFormatter;
+use Sample\Domains\Article\Services\StringFormatterService;
 use Sample\Foundation\Command;
 
 /**
- * Class FormatArticleBody
+ * Class FormatArticleTitle
  *
- * @category
+ * @category Command
  * @package Sample\Domains\Article\Commands
  * @author  Mahmoud Zalt <mahmoud@vinelab.com>
  */
-class FormatArticleBody extends Command implements SelfHandling
+class FormatArticleTitleCommand extends Command implements SelfHandling
 {
 
     private $entity;
 
-    private $body;
+    private $title;
 
-    public function __construct($data, $body)
+    public function __construct($data, $title)
     {
         $this->entity = $data;
-        $this->body = $body;
+        $this->title = $title;
     }
 
     public function handle()
     {
-        $this->entity->body = StringFormatter::convertToUppercase($this->body);
+        $this->entity->title = StringFormatterService::removeWhiteSpace($this->title);
 
         return $this->entity;
     }
+
 }

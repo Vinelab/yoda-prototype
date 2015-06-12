@@ -7,12 +7,14 @@ use Sample\Domains\Article\Entities\Article;
 use Illuminate\Contracts\Bus\SelfHandling;
 
 /**
- * Build a query for articles.
+ * Class BuildPublishedArticlesQueryCommand
  *
  * @category Command
+ * @package Sample\Domains\Article\Commands
  * @author Abed Halawi <abed.halawi@vinelab.com>
+ * @author  Mahmoud Zalt <mahmoud@vinelab.com>
  */
-class BuildPublishedArticlesQuery extends Command implements SelfHandling
+class BuildPublishedArticlesQueryCommand extends Command implements SelfHandling
 {
     public function handle(Article $article)
     {

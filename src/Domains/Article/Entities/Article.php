@@ -2,17 +2,26 @@
 
 namespace Sample\Domains\Article\Entities;
 
-use Vinelab\NeoEloquent\Eloquent\Model as NeoEloquent;
 use Carbon\Carbon;
+use Vinelab\NeoEloquent\Eloquent\Model as NeoEloquent;
 
+/**
+ * Class Article
+ *
+ * @category Entity
+ * @package  Sample\Domains\Article\Entities
+ * @author   Abed Halawi <abed.halawi@vinelab.com>
+ * @author   Mahmoud Zalt <mahmoud@vinelab.com>
+ */
 class Article extends NeoEloquent
 {
+
     protected $label = 'Article';
 
     protected $casts = [
-        'id' => 'integer',
-        'title' => 'string',
-        'slug'  => 'string',
+        'id'             => 'integer',
+        'title'          => 'string',
+        'slug'           => 'string',
         'is_featured'    => 'boolean',
         'content_type'   => 'string',
         'comments_count' => 'integer',

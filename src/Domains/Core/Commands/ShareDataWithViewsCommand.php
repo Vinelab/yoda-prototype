@@ -10,8 +10,9 @@ use Illuminate\Contracts\Bus\SelfHandling;
  *
  * @category Command
  * @author Abed Halawi <abed.halawi@vinelab.com>
+ * @author  Mahmoud Zalt <mahmoud@vinelab.com>
  */
-class ShareDataWithViews extends Command implements SelfHandling
+class ShareDataWithViewsCommand extends Command implements SelfHandling
 {
     public function __construct($data)
     {

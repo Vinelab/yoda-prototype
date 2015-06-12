@@ -2,11 +2,20 @@
 
 namespace Sample\Domains\Core\Commands\Querying;
 
-use Sample\Foundation\Command;
 use Illuminate\Contracts\Bus\SelfHandling;
+use Sample\Foundation\Command;
 
-class SetQueryLimit extends Command implements SelfHandling
+/**
+ * Class SetQueryLimitCommand
+ *
+ * @category
+ * @package Sample\Domains\Core\Commands\Querying
+ * @author  Abed Halawi <abed.halawi@vinelab.com>
+ * @author  Mahmoud Zalt <mahmoud@vinelab.com>
+ */
+class SetQueryLimitCommand extends Command implements SelfHandling
 {
+
     public function __construct($data, $limit = 0)
     {
         $this->query = $data;

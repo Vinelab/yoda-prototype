@@ -3,8 +3,8 @@
 namespace Sample\Applications\Cms\Http\Controllers;
 
 use Sample\Applications\Cms\Features\CreateNewArticle;
-use Sample\Applications\Cms\Features\DisplayCreateNewArticleForm;
-use Sample\Applications\Cms\Features\StoreNewArticle;
+use Sample\Applications\Cms\Features\DisplayCreateNewArticleFormFeature;
+use Sample\Applications\Cms\Features\StoreNewArticleFeature;
 use Sample\Foundation\Http\Controllers\Controller;
 
 /**
@@ -22,7 +22,7 @@ class ArticleController extends Controller
      */
     public function displayCreateNewArticleForm()
     {
-        return $this->dispatch(new DisplayCreateNewArticleForm());
+        return $this->dispatch(new DisplayCreateNewArticleFormFeature());
     }
 
     /**
@@ -30,6 +30,7 @@ class ArticleController extends Controller
      */
     public function storeNewArticle()
     {
-        return $this->dispatch(new StoreNewArticle());
+
+        return $this->dispatch(new StoreNewArticleFeature());
     }
 }

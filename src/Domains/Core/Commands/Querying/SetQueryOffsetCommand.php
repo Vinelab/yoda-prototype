@@ -2,17 +2,19 @@
 
 namespace Sample\Domains\Core\Commands\Querying;
 
-use Sample\Foundation\Command;
 use Illuminate\Contracts\Bus\SelfHandling;
+use Sample\Foundation\Command;
 
 /**
  * Set the skipping offset parameter to the given query.
  *
  * @category Command
- * @author Abed Halawi <abed.halawi@vinelab.com>
+ * @author   Abed Halawi <abed.halawi@vinelab.com>
+ * @author   Mahmoud Zalt <mahmoud@vinelab.com>
  */
-class SetQueryOffset extends Command implements SelfHandling
+class SetQueryOffsetCommand extends Command implements SelfHandling
 {
+
     public function __construct($data, $offset = 0)
     {
         $this->query = $data;

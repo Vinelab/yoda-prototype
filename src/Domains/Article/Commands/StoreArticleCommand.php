@@ -9,11 +9,11 @@ use Sample\Foundation\Command;
 /**
  * Class StoreArticle
  *
- * @category
- * @package Sample\Domains\Article\Commands
- * @author  Mahmoud Zalt <mahmoud@vinelab.com>
+ * @category Command
+ * @package  Sample\Domains\Article\Commands
+ * @author   Mahmoud Zalt <mahmoud@vinelab.com>
  */
-class StoreArticle extends Command implements SelfHandling
+class StoreArticleCommand extends Command implements SelfHandling
 {
 
     private $entity;

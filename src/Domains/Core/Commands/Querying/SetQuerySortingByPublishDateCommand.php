@@ -2,11 +2,20 @@
 
 namespace Sample\Domains\Core\Commands\Querying;
 
-use Sample\Foundation\Command;
 use Illuminate\Contracts\Bus\SelfHandling;
+use Sample\Foundation\Command;
 
-class SetQuerySortingByPublishDate extends Command implements SelfHandling
+/**
+ * Class SetQuerySortingByPublishDateCommand
+ *
+ * @category
+ * @package Sample\Domains\Core\Commands\Querying
+ * @author  Abed Halawi <abed.halawi@vinelab.com>
+ * @author  Mahmoud Zalt <mahmoud@vinelab.com>
+ */
+class SetQuerySortingByPublishDateCommand extends Command implements SelfHandling
 {
+
     public function __construct($data, $sorting_direction = 'desc')
     {
         $this->query = $data;

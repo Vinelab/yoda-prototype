@@ -8,8 +8,8 @@ use Sample\Foundation\Repository;
  * Class ArticleRepository
  *
  * @category Repository
- * @package Sample\Domains\Article\Entities
- * @author  Mahmoud Zalt <mahmoud@vinelab.com>
+ * @package  Sample\Domains\Article\Entities
+ * @author   Mahmoud Zalt <mahmoud@vinelab.com>
  */
 class ArticleRepository extends Repository
 {
