@@ -20,5 +20,14 @@ class StringFormatter // extends Service
     {
         return str_replace(' ', '', $string);
     }
+    /**
+     * @param $string
+     *
+     * @return mixed
+     */
+    public static function convertToUppercase($string)
+    {
+        return strtoupper($string);
+    }
 
 }

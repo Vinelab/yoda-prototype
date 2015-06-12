@@ -7,9 +7,9 @@ return [
     'connections' => [
 
         'neo4j' => [
-            'driver'   => 'neo4j',
-            'host'     => 'dev',
-            'port'     => 7474,
+            'driver'   => env('DB_CONNECTION'),
+            'host'     => env('DB_HOST'),
+            'port'     => env('DB_PORT'),
         ],
 
     ],

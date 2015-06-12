@@ -1,8 +1,8 @@
 <?php
 
-namespace Sample\Domains\Article\Entities;
+namespace Sample\Domains\Article\Repositories;
 
-use Vinelab\NeoEloquent\Eloquent\Model as NeoEloquent;
+use Sample\Foundation\Repository;
 
 /**
  * Class ArticleRepository
@@ -11,7 +11,18 @@ use Vinelab\NeoEloquent\Eloquent\Model as NeoEloquent;
  * @package Sample\Domains\Article\Entities
  * @author  Mahmoud Zalt <mahmoud@vinelab.com>
  */
-class ArticleRepository extends NeoEloquent
+class ArticleRepository extends Repository
 {
 
+    /**
+     * @param $entity
+     *
+     * @return mixed
+     */
+    public function store($entity)
+    {
+        $entity->save();
+
+        return $entity;
+    }
 }

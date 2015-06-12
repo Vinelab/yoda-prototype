@@ -14,7 +14,12 @@ use Sample\Foundation\Feature;
 class DisplayCreateNewArticleForm extends Feature
 {
     protected $commands = [
-        ['Sample\Domains\Core\Commands\Response\DisplayView', ['name' => 'Cms::article.create']]
+        [
+            'Sample\Domains\Core\Commands\Response\DisplayView',
+            [
+                'name' => 'Cms::article.create'
+            ]
+        ],
     ];
 
 }

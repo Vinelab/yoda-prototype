@@ -2,9 +2,9 @@
 
 namespace Sample\Domains\Article\Commands;
 
+use Illuminate\Contracts\Bus\SelfHandling;
 use Sample\Domains\Article\Services\StringFormatter;
 use Sample\Foundation\Command;
-use Illuminate\Contracts\Bus\SelfHandling;
 
 /**
  * Class FormatArticleTitle
@@ -16,16 +16,21 @@ use Illuminate\Contracts\Bus\SelfHandling;
 class FormatArticleTitle extends Command implements SelfHandling
 {
 
+    private $entity;
+
     private $title;
 
-    public function __construct($title)
+    public function __construct($data, $title)
     {
+        $this->entity = $data;
         $this->title = $title;
     }
 
     public function handle()
     {
-        return StringFormatter::removeWhiteSpace($this->title);
+        $this->entity->title = StringFormatter::removeWhiteSpace($this->title);
+
+        return $this->entity;
     }
 
 }

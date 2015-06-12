@@ -16,6 +16,7 @@ class StoreNewArticle extends Feature
     protected $commands = [
         'Sample\Domains\Article\Commands\BuildEmptyArticleEntity',
         'Sample\Domains\Article\Commands\FormatArticleTitle',
-        'Sample\Domains\Article\Commands\FormatArticleBody'
+        'Sample\Domains\Article\Commands\FormatArticleBody',
+        'Sample\Domains\Article\Commands\StoreArticle',
     ];
 }
