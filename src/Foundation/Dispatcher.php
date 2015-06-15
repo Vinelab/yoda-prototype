@@ -2,7 +2,7 @@
 
 namespace Sample\Foundation;
 
-use Illuminate\Contracts\Bus\Dispatcher;
+use Illuminate\Contracts\Bus\Dispatcher as IlluminateDispatcher;
 use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Http\Request;
 
@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
  * @package Sample\Foundation
  * @author  Abed Halawi <abed.halawi@vinelab.com>
  */
-class Feature implements SelfHandling
+class Dispatcher implements SelfHandling
 {
 
     /**
@@ -40,18 +40,25 @@ class Feature implements SelfHandling
     /**
      * The dispatcher bus instance.
      *
-     * @var \Illuminate\Contracts\Bus\Dispatcher
+     * @var \Illuminate\Contracts\Bus\IlluminateDispatcher
      */
     protected $dispatcher;
 
-    public function handle(Request $request, Dispatcher $dispatcher)
+    public function __construct($data = null)
+    {
+        $this->data = $data;
+    }
+
+    public function handle(Request $request, IlluminateDispatcher $dispatcher)
     {
         $this->request = $request;
         $this->dispatcher = $dispatcher;
 
         $model = null;
 
-        if ($this->model) {
+        if ($this->data) {
+            $model = $this->data;
+        } else if ($this->model) {
             // TODO: Change this to support multiple models
             $model = 'App\\' . $this->model;
             $model = new $model;

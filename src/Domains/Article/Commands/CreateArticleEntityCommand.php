@@ -13,7 +13,7 @@ use Illuminate\Contracts\Bus\SelfHandling;
  * @package Sample\Domains\Article\Commands
  * @author  Mahmoud Zalt <mahmoud@vinelab.com>
  */
-class BuildEmptyArticleEntityCommand extends Command implements SelfHandling
+class CreateArticleEntityCommand extends Command implements SelfHandling
 {
     /**
      * @param \Sample\Domains\Article\Entities\Article $article

@@ -2,7 +2,7 @@
 
 namespace Sample\Applications\Cms\Features;
 
-use Sample\Foundation\Feature;
+use Sample\Foundation\Dispatcher;
 
 /**
  * Class DisplayCreateNewArticleForm
@@ -11,7 +11,7 @@ use Sample\Foundation\Feature;
  * @package Sample\Applications\Cms\Features
  * @author  Mahmoud Zalt <mahmoud@vinelab.com>
  */
-class DisplayCreateNewArticleFormFeature extends Feature
+class DisplayCreateNewArticleFormFeature extends Dispatcher
 {
     protected $commands = [
         [

@@ -2,7 +2,7 @@
 
 namespace Sample\Applications\Api\Features;
 
-use Sample\Foundation\Feature;
+use Sample\Foundation\Dispatcher;
 
 /**
  * Class ListPublishedArticlesFeature
@@ -11,7 +11,7 @@ use Sample\Foundation\Feature;
  * @package Sample\Applications\Api\Features
  * @author  Mahmoud Zalt <mahmoud@vinelab.com>
  */
-class ListPublishedArticlesFeature extends Feature
+class ListPublishedArticlesFeature extends Dispatcher
 {
         protected $commands = [
             'Sample\Domains\Article\Commands\BuildPublishedArticlesQueryCommand',

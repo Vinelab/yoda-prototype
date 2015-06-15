@@ -37,4 +37,10 @@ class Article extends NeoEloquent
     {
         return $query->where('is_featured', '=', true);
     }
+
+    public function photos()
+    {
+        return $this->hasMany('Sample\Domains\Photo\Entities\Photo', 'PHOTOS');
+    }
+
 }

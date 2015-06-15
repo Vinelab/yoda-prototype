@@ -2,7 +2,7 @@
 
 namespace Sample\Applications\Cms\Features;
 
-use Sample\Foundation\Feature;
+use Sample\Foundation\Dispatcher;
 
 /**
  * Class StoreNewArticle
@@ -11,12 +11,16 @@ use Sample\Foundation\Feature;
  * @package Sample\Applications\Cms\Features
  * @author  Mahmoud Zalt <mahmoud@vinelab.com>
  */
-class StoreNewArticleFeature extends Feature
+class StoreNewArticleFeature extends Dispatcher
 {
     protected $commands = [
-        'Sample\Domains\Article\Commands\BuildEmptyArticleEntityCommand',
-        'Sample\Domains\Article\Commands\FormatArticleTitleCommand',
-        'Sample\Domains\Article\Commands\FormatArticleBodyCommand',
+        'Sample\Domains\Article\Commands\CreateArticleEntityCommand',
+
+        'Sample\Domains\Article\Operations\FormatFieldsOperation',
+
+//        'Sample\Domains\Photo\Operations\DealWithPhotosOperation',
+//        'Sample\Domains\Article\Commands\AttachPhotosToArticleCommand',
+
         'Sample\Domains\Article\Commands\StoreArticleCommand',
     ];
 }

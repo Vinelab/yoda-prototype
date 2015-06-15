@@ -14,9 +14,18 @@ a. add the following to you host file
 ```
 
 b. run apache in docker
+
 `
     docker run -v .../lumen/yoda-prototype:/var/www/ -p 8008:80 -d --name mega-apache mahmoudz/apache-php-ready
 `
+
+c. open browser to this link:
+
+`
+    http://cms.localdock:808/articles/create
+`
+
+
 
 
 
@@ -33,6 +42,7 @@ a. add the following to you host file
 ```
 
 b. run the php server with artisan
+
 `
     php artisan serve --host=sample.dev --port=8000
 `
