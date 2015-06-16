@@ -21,8 +21,9 @@ class ArticleRepository extends Repository
      */
     public function store($entity)
     {
-        $entity->save();
+        $attributes = $entity->attributesToArray();
+        $relations = $entity->relationsToArray();
 
-        return $entity;
+        return $entity->createWith($attributes, $relations);
     }
 }

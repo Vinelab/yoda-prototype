@@ -20,9 +20,9 @@ class FormatArticleBodyCommand extends Command implements SelfHandling
 
     private $body;
 
-    public function __construct($data, $body)
+    public function __construct($entity, $body)
     {
-        $this->entity = $data;
+        $this->entity = $entity;
         $this->body = $body;
     }
 

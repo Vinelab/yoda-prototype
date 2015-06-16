@@ -20,9 +20,13 @@ class FormatArticleTitleCommand extends Command implements SelfHandling
 
     private $title;
 
-    public function __construct($data, $title)
+    /**
+     * @param $entity
+     * @param $title
+     */
+    public function __construct($entity, $title)
     {
-        $this->entity = $data;
+        $this->entity = $entity;
         $this->title = $title;
     }
 

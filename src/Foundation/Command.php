@@ -12,14 +12,4 @@ namespace Sample\Foundation;
 abstract class Command
 {
 
-    public function __construct($data)
-    {
-        $this->data = $data;
-    }
-
-    public function entity()
-    {
-        return $this->data;
-    }
-
 }

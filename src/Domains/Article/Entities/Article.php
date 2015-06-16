@@ -18,9 +18,15 @@ class Article extends NeoEloquent
 
     protected $label = 'Article';
 
+    protected $fillable = [
+        'title' => 'string',
+        'body'  => 'string',
+    ];
+
     protected $casts = [
         'id'             => 'integer',
         'title'          => 'string',
+        'body'           => 'string',
         'slug'           => 'string',
         'is_featured'    => 'boolean',
         'content_type'   => 'string',

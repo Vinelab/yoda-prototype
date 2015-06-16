@@ -15,6 +15,7 @@ use Illuminate\Contracts\Bus\SelfHandling;
  */
 class CreateArticleEntityCommand extends Command implements SelfHandling
 {
+
     /**
      * @param \Sample\Domains\Article\Entities\Article $article
      *

@@ -16,6 +16,8 @@ class Photo extends NeoEloquent
 
     protected $label = 'Photo';
 
+    protected $fillable = ['original'];
+
     protected $casts = [
         'id'  => 'integer',
         'url' => 'string',

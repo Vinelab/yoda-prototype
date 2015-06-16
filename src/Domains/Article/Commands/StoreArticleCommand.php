@@ -18,9 +18,9 @@ class StoreArticleCommand extends Command implements SelfHandling
 
     private $entity;
 
-    public function __construct($data)
+    public function __construct($entity)
     {
-        $this->entity = $data;
+        $this->entity = $entity;
     }
 
     public function handle(ArticleRepository $repository)
