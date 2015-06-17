@@ -16,20 +16,14 @@ use Sample\Foundation\Command;
 class FormatArticleBodyCommand extends Command implements SelfHandling
 {
 
-    private $entity;
-
-    private $body;
-
-    public function __construct($entity, $body)
-    {
-        $this->entity = $entity;
-        $this->body = $body;
-    }
-
     public function handle()
     {
-        $this->entity->body = StringFormatterService::convertToUppercase($this->body);
+        $body = $this->input('body');
+        $article = $this->get('article');
 
-        return $this->entity;
+        $article->body = StringFormatterService::convertToUppercase($body);
+
+        $this->set('article', $article);
     }
+
 }

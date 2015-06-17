@@ -2,16 +2,16 @@
 
 namespace Sample\Domains\Article\Commands;
 
-use Sample\Foundation\Command;
-use Sample\Domains\Article\Entities\Article;
 use Illuminate\Contracts\Bus\SelfHandling;
+use Sample\Domains\Article\Entities\Article;
+use Sample\Foundation\Command;
 
 /**
  * return the empty entity
  *
  * @category Command
- * @package Sample\Domains\Article\Commands
- * @author  Mahmoud Zalt <mahmoud@vinelab.com>
+ * @package  Sample\Domains\Article\Commands
+ * @author   Mahmoud Zalt <mahmoud@vinelab.com>
  */
 class CreateArticleEntityCommand extends Command implements SelfHandling
 {
@@ -19,10 +19,11 @@ class CreateArticleEntityCommand extends Command implements SelfHandling
     /**
      * @param \Sample\Domains\Article\Entities\Article $article
      *
-     * @return \Sample\Domains\Article\Entities\Article
+     * @return $this
      */
     public function handle(Article $article)
     {
-        return $article;
+        $this->set('article', $article);
     }
+
 }

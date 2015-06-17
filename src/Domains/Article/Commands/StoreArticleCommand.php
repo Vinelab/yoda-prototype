@@ -16,16 +16,16 @@ use Sample\Foundation\Command;
 class StoreArticleCommand extends Command implements SelfHandling
 {
 
-    private $entity;
-
-    public function __construct($entity)
-    {
-        $this->entity = $entity;
-    }
-
+    /**
+     * @param \Sample\Domains\Article\Repositories\ArticleRepository $repository
+     *
+     * @return \Sample\Foundation\Transporter
+     */
     public function handle(ArticleRepository $repository)
     {
-        return $repository->store($this->entity);
+        $article = $this->transporter()->get('article');
+
+        $repository->store($article);
     }
 
 }

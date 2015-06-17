@@ -5,6 +5,7 @@ namespace Sample\Domains\Article\Commands;
 use Illuminate\Contracts\Bus\SelfHandling;
 use Sample\Domains\Article\Services\StringFormatterService;
 use Sample\Foundation\Command;
+use Sample\Foundation\Transporter;
 
 /**
  * Class FormatArticleTitle
@@ -16,25 +17,14 @@ use Sample\Foundation\Command;
 class FormatArticleTitleCommand extends Command implements SelfHandling
 {
 
-    private $entity;
-
-    private $title;
-
-    /**
-     * @param $entity
-     * @param $title
-     */
-    public function __construct($entity, $title)
-    {
-        $this->entity = $entity;
-        $this->title = $title;
-    }
-
     public function handle()
     {
-        $this->entity->title = StringFormatterService::removeWhiteSpace($this->title);
+        $title = $this->input('title');
+        $article = $this->get('article');
 
-        return $this->entity;
+        $article->title = StringFormatterService::removeWhiteSpace($title);
+
+        $this->set('article', $article);
     }
 
 }

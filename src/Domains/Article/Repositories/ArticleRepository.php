@@ -24,6 +24,10 @@ class ArticleRepository extends Repository
         $attributes = $entity->attributesToArray();
         $relations = $entity->relationsToArray();
 
-        return $entity->createWith($attributes, $relations);
+        if($relations){
+            return $entity->createWith($attributes, $relations);
+        }
+
+        return $entity->create($attributes);
     }
 }

@@ -27,6 +27,8 @@ class FoundationServiceProvider extends ServiceProvider
         $this->registerServiceProvidersInDirectories($directories);
         $this->loadRoutesInDirectories($directories);
         $this->loadViewsInDirectories($directories);
+
+        $this->app->singleton('Sample\Foundation\TransporterInterface', 'Sample\Foundation\Transporter');
     }
 
     /**

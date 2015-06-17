@@ -17,6 +17,11 @@ use Sample\Foundation\Dispatcher;
 class GetPhotosCollectionOperation extends Dispatcher
 {
 
+    protected $commands = [
+        'Sample\Domains\Photo\Commands\CreatePhotoEntityCommand',
+        'Sample\Domains\Photo\Commands\FormatPhotoFieldsCommand',
+    ];
+
     /**
      * @param null $photos
      */

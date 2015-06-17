@@ -2,110 +2,45 @@
 
 namespace Sample\Foundation;
 
+use Sample\Foundation\TransporterInterface;
 use Illuminate\Contracts\Bus\Dispatcher as IlluminateDispatcher;
 use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Http\Request;
 
 /**
- * Class Feature
+ * Class Dispatcher
  *
- * @category
+ * @category Commands Dispatcher
  * @package Sample\Foundation
+ * @author  Mahmoud Zalt <mahmoud@vinelab.com>
  * @author  Abed Halawi <abed.halawi@vinelab.com>
  */
 class Dispatcher implements SelfHandling
 {
 
     /**
-     * The model involved in this operation
-     *
-     * @var string
-     */
-    protected $model = '';
-
-    /**
-     * The commands to dispatch in sequential order
+     * The dispatchable commands in sequential order
      *
      * @var array
      */
     protected $commands = [];
 
     /**
-     * The current request instance.
+     * Dispatch feature commands one by one in sequential order and pass data
+     * between them through the Transporter object.
      *
-     * @var \Illuminate\Http\Request
-     */
-    protected $request;
-
-    /**
-     * The dispatcher bus instance.
+     * @param \Illuminate\Contracts\Bus\Dispatcher    $dispatcher
+     * @param \Sample\Foundation\TransporterInterface $transporter
      *
-     * @var \Illuminate\Contracts\Bus\IlluminateDispatcher
+     * @return string
      */
-    protected $dispatcher;
-
-    public function __construct($data = null)
+    public function handle(IlluminateDispatcher $dispatcher, TransporterInterface $transporter)
     {
-        $this->data = $data;
-    }
-
-    public function handle(Request $request, IlluminateDispatcher $dispatcher)
-    {
-        $this->request = $request;
-        $this->dispatcher = $dispatcher;
-
-        $model = null;
-
-        if ($this->data) {
-            $model = $this->data;
-        } else if ($this->model) {
-            // TODO: Change this to support multiple models
-            $model = 'App\\' . $this->model;
-            $model = new $model;
+        foreach ($this->commands as $command) {
+            $dispatcher->dispatchFromArray($command, ['transporter' => $transporter]);
         }
 
-        return $this->dispatchCommands($model);
-    }
-
-    /**
-     * Get the commands for this operation.
-     *
-     * @return array
-     */
-    public function getCommands()
-    {
-        return $this->commands;
-    }
-
-    /**
-     * @param $data
-     *
-     * @return array
-     */
-    public function dispatchCommands($data)
-    {
-        // marshal and dispatch the commands
-        foreach ($this->getCommands() as $command) {
-            // keep wrapping values with data as expected by commands
-            $values = compact('data');
-
-            // when we get an array as a command it means
-            // we need to call a command and send it extra arguments
-            if (is_array($command)) {
-                // get the command and and its arguments
-                list($command, $args) = $command;
-                // when the data is nothing (null) let's have it as an array
-                if (!$values['data']) {
-                    $values['data'] = [];
-                }
-
-                // data must be of the type array or array-able somehow
-                $values = array_merge($values, $args);
-            }
-
-            $data = $this->dispatcher->dispatchFrom($command, $this->request, $values);
-        }
-
-        return $data;
+//        return $transporter->response();
+        return 'Feature (' . get_class($this) . ') completed successfully.';
     }
 }

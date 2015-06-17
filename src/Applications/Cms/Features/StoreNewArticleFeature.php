@@ -16,47 +16,32 @@ use Sample\Foundation\Dispatcher;
 class StoreNewArticleFeature extends Dispatcher
 {
 
+    protected $commands = [
+        'Sample\Domains\Article\Commands\CreateArticleEntityCommand',
+        'Sample\Domains\Article\Operations\FormatArticleFieldsOperation',
 
-    public function handle(Request $request, IlluminateDispatcher $dispatcher)
-    {
-        $articleEntity = $dispatcher->dispatchFrom('Sample\Domains\Article\Commands\CreateArticleEntityCommand',
-            $request
-        );
+//        'Sample\Domains\Photo\Operations\GetPhotosCollectionOperation', // <<<
+//        'Sample\Domains\Article\Commands\AttachPhotosToArticleCommand',
 
-        // FIELDS:
+        'Sample\Domains\Article\Commands\StoreArticleCommand',
+    ];
 
-        $articleEntity = $dispatcher->dispatchFrom('Sample\Domains\Article\Commands\FormatArticleTitleCommand',
-            $request,
-            [
-                'entity' => $articleEntity
-            ]
-        );
 
-        $articleEntity = $dispatcher->dispatchFrom('Sample\Domains\Article\Commands\FormatArticleBodyCommand', $request,
-            [
-                'entity' => $articleEntity
-            ]
-        );
-
-        // PHOTOS:
-
-        $photosCollection = $dispatcher->dispatchFrom('Sample\Domains\Photo\Operations\GetPhotosCollectionOperation',
-            $request);
-
-        $articleEntity = $dispatcher->dispatchFrom('Sample\Domains\Article\Commands\AttachPhotosToArticleCommand',
-            $request,
-            [
-                'entity'           => $articleEntity,
-                'photosCollection' => $photosCollection,
-            ]);
-
-        // STORAGE:
-
-        $articleEntity = $dispatcher->dispatchFrom('Sample\Domains\Article\Commands\StoreArticleCommand', $request,
-            ['entity' => $articleEntity]
-        );
-
-        dd('DONE', $articleEntity);
-    }
+//    public function handlerrr(Request $request, IlluminateDispatcher $dispatcher)
+//    {
+//
+//        // PHOTOS:
+//
+//        $photosCollection = $dispatcher->dispatchFrom('Sample\Domains\Photo\Operations\GetPhotosCollectionOperation',
+//            $request);
+//
+//        $articleEntity = $dispatcher->dispatchFrom('Sample\Domains\Article\Commands\AttachPhotosToArticleCommand',
+//            $request,
+//            [
+//                'entity'           => $articleEntity,
+//                'photosCollection' => $photosCollection,
+//            ]);
+//
+//    }
 
 }
