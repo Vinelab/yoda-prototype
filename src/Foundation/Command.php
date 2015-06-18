@@ -44,6 +44,18 @@ abstract class Command
     }
 
     /**
+     * Helper function to set response on the transporter
+     *
+     * @param $value
+     *
+     * @return \Sample\Foundation\Transporter
+     */
+    public function setResponse($value)
+    {
+        return $this->transporter()->set('response', $value);
+    }
+
+    /**
      * get data from the transporter (from previous commands)
      *
      * @param $key
@@ -65,6 +77,16 @@ abstract class Command
     public function input($key)
     {
         return $this->transporter()->input($key);
+    }
+
+    /**
+     * return the request instance
+     *
+     * @return mixed
+     */
+    public function request()
+    {
+        return $this->transporter()->request();
     }
 
 }

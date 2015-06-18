@@ -14,12 +14,7 @@ use Sample\Foundation\Dispatcher;
 class DisplayCreateNewArticleFormFeature extends Dispatcher
 {
     protected $commands = [
-        [
-            'Sample\Domains\Core\Commands\Response\DisplayViewCommand',
-            [
-                'name' => 'Cms::article.create'
-            ]
-        ],
+        'Sample\Domains\Core\Commands\Response\DisplayViewCommand',
     ];
 
 }

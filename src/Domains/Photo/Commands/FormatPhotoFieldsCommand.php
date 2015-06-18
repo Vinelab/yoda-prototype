@@ -15,19 +15,16 @@ use Sample\Foundation\Command;
 class FormatPhotoFieldsCommand extends Command implements SelfHandling
 {
 
-    public function __construct($entity, $data)
-    {
-        $this->entity = $entity;
-        $this->data = $data;
-    }
-
     public function handle()
     {
-        $this->entity->original = $this->data['original'];
-        $this->entity->thumbnail = $this->data['thumbnail'];
-        $this->entity->small = $this->data['small'];
+        $photoInput = $this->input('photo');
+        $photo = $this->get('photo');
 
-        return $this->entity;
+        $photo->original = $photoInput['original'];
+        $photo->thumbnail = $photoInput['thumbnail'];
+        $photo->small = $photoInput['small'];
+
+        $this->set('photo', $photo);
     }
 
 }

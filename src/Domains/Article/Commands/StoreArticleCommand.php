@@ -23,7 +23,7 @@ class StoreArticleCommand extends Command implements SelfHandling
      */
     public function handle(ArticleRepository $repository)
     {
-        $article = $this->transporter()->get('article');
+        $article = $this->get('article');
 
         $repository->store($article);
     }

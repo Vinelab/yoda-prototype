@@ -2,8 +2,6 @@
 
 namespace Sample\Applications\Cms\Features;
 
-use Illuminate\Contracts\Bus\Dispatcher as IlluminateDispatcher;
-use Illuminate\Http\Request;
 use Sample\Foundation\Dispatcher;
 
 /**
@@ -15,33 +13,14 @@ use Sample\Foundation\Dispatcher;
  */
 class StoreNewArticleFeature extends Dispatcher
 {
-
     protected $commands = [
         'Sample\Domains\Article\Commands\CreateArticleEntityCommand',
         'Sample\Domains\Article\Operations\FormatArticleFieldsOperation',
 
-//        'Sample\Domains\Photo\Operations\GetPhotosCollectionOperation', // <<<
-//        'Sample\Domains\Article\Commands\AttachPhotosToArticleCommand',
+        'Sample\Domains\Photo\Operations\GetPhotosOperation',
+        'Sample\Domains\Article\Commands\AttachPhotosToArticleCommand',
 
         'Sample\Domains\Article\Commands\StoreArticleCommand',
     ];
-
-
-//    public function handlerrr(Request $request, IlluminateDispatcher $dispatcher)
-//    {
-//
-//        // PHOTOS:
-//
-//        $photosCollection = $dispatcher->dispatchFrom('Sample\Domains\Photo\Operations\GetPhotosCollectionOperation',
-//            $request);
-//
-//        $articleEntity = $dispatcher->dispatchFrom('Sample\Domains\Article\Commands\AttachPhotosToArticleCommand',
-//            $request,
-//            [
-//                'entity'           => $articleEntity,
-//                'photosCollection' => $photosCollection,
-//            ]);
-//
-//    }
 
 }

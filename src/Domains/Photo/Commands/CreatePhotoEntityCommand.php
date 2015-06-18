@@ -23,7 +23,7 @@ class CreatePhotoEntityCommand extends Command implements SelfHandling
      */
     public function handle(Photo $photo)
     {
-        return $photo;
+        $this->set('photo', $photo);
     }
 
 }

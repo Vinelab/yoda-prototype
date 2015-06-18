@@ -15,27 +15,14 @@ use Sample\Foundation\Command;
 class AttachPhotosToArticleCommand extends Command implements SelfHandling
 {
 
-    /**
-     * @var
-     */
-    private $entity;
-
-    /**
-     * @var
-     */
-    private $photosCollection;
-
-    public function __construct($entity, $photosCollection)
-    {
-        $this->entity = $entity;
-        $this->photosCollection = $photosCollection;
-    }
-
     public function handle()
     {
-        $this->entity->setRelation('photos', $this->photosCollection);
+        $photosCollection = $this->get('photosCollection');
+        $article = $this->get('article');
 
-        return $this->entity;
+        $article->setRelation('photos', $photosCollection);
+
+        $this->get('article', $article);
     }
 
 }
