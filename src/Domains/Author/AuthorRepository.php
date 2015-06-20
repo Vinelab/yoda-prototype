@@ -4,9 +4,9 @@ namespace Sample\Domains\Author;
 
 use Sample\Domains\Author\Entities\Author;
 
-class AuthorService
+class AuthorRepository
 {
-    public function byId($id)
+    public function find($id)
     {
         return new Author();
     }

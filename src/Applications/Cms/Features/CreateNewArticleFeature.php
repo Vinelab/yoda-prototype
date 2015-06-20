@@ -5,13 +5,15 @@ namespace Sample\Applications\Cms\Features;
 use Faker\Factory as Faker;
 use Illuminate\Http\Request;
 use Sample\Foundation\Dispatcher;
-use Sample\Domains\Article\Parts\Body;
-use Sample\Domains\Article\Parts\Slug;
-use Sample\Domains\Photo\PhotoService;
-use Sample\Domains\Article\Parts\Title;
-use Sample\Domains\Author\AuthorService;
 use Sample\Domains\Article\ArticleBuilder;
+use Sample\Domains\Article\ArticleRepository;
+use Sample\Domains\Photo\Commands\MakeNewPhotoCommand;
+use Sample\Domains\Article\Commands\MakeNewSlugCommand;
+use Sample\Domains\Article\Commands\MakeNewTitleCommand;
+use Sample\Domains\Author\Commands\FindAuthorByIdCommand;
+use Sample\Domains\Article\Commands\MakeNewContentCommand;
 use Illuminate\Contracts\Bus\Dispatcher as IlluminateDispatcher;
+use Sample\Domains\Photo\Commands\MakeNewPhotosCollectionCommand;
 
 class CreateNewArticleFeature extends Dispatcher
 {
@@ -19,23 +21,21 @@ class CreateNewArticleFeature extends Dispatcher
         IlluminateDispatcher $dispatcher,
         Request $request,
         ArticleBuilder $builder,
-        PhotoService $photos,
-        AuthorService $authors,
+        ArticleRepository $articles,
         Faker $fake
     ) {
         $fake = Faker::create();
 
         $title = $fake->sentence;
 
-        $builder->title  = new Title($request->input('title', $title));
-        $builder->slug   = new Slug($request->input('title', $title));
-        $builder->body   = new Body($request->input('body', $fake->text));
-        $builder->cover  = $photos->make($request->input('cover'));
-        $builder->photos = $photos->getPhotosCollection($request->input('photos', []));
-        $builder->author = $authors->byId($request->input('author_id', 10));
+        $builder->title   = $dispatcher->dispatchFrom(MakeNewTitleCommand::class, $request, compact('title'));
+        $builder->slug    = $dispatcher->dispatchFrom(MakeNewSlugCommand::class, $request, compact('title'));
+        $builder->content = $dispatcher->dispatchFrom(MakeNewContentCommand::class, $request, ['content' => $fake->text]);
 
-        $article = $builder->make();
-        dd($article);
-        $articles->add($article);
+        $builder->cover  = $dispatcher->dispatchFrom(MakeNewPhotoCommand::class, $request, ['photo' => $request->input('cover')]);
+        $builder->photos = $dispatcher->dispatchFrom(MakeNewPhotosCollectionCommand::class, $request, ['photos' => []]);
+        $builder->author = $dispatcher->dispatchFrom(FindAuthorByIdCommand::class, $request, ['author_id' => 10]);
+
+        $articles->add($builder->make());
     }
 }
