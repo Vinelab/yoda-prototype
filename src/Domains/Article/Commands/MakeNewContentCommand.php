@@ -8,7 +8,7 @@ use Illuminate\Contracts\Bus\SelfHandling;
 
 class MakeNewContentCommand extends Command implements SelfHandling
 {
-    public function __construct($content)
+    public function __construct($content = 'lots of command content is here')
     {
         $this->content = $content;
     }

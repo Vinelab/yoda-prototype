@@ -11,7 +11,7 @@ class MakeNewPhotosCollectionCommand extends Command implements SelfHandling
 {
     public function __construct($photos = [])
     {
-        $this->photos = $photos;
+        $this->photos = $photos ?: [];
     }
 
     public function handle(PhotosCollection $collection, PhotoFactory $factory)

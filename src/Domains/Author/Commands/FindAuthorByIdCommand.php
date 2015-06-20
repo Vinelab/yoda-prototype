@@ -8,7 +8,7 @@ use Illuminate\Contracts\Bus\SelfHandling;
 
 class FindAuthorByIdCommand extends Command implements SelfHandling
 {
-    public function __construct($author_id)
+    public function __construct($author_id = null)
     {
         $this->id = $author_id;
     }

@@ -4,39 +4,29 @@ namespace Sample\Applications\Cms\Features;
 
 use Faker\Factory as Faker;
 use Illuminate\Http\Request;
-use Sample\Foundation\Dispatcher;
+use Sample\Foundation\BuilderDispatcher;
 use Sample\Domains\Article\ArticleBuilder;
+use Sample\Domains\Core\Commands\BuildCommand;
 use Sample\Domains\Photo\Commands\MakeNewPhotoCommand;
 use Sample\Domains\Article\Commands\SaveArticleCommand;
 use Sample\Domains\Article\Commands\MakeNewSlugCommand;
 use Sample\Domains\Article\Commands\MakeNewTitleCommand;
 use Sample\Domains\Author\Commands\FindAuthorByIdCommand;
 use Sample\Domains\Article\Commands\MakeNewContentCommand;
-use Illuminate\Contracts\Bus\Dispatcher as IlluminateDispatcher;
 use Sample\Domains\Photo\Commands\MakeNewPhotosCollectionCommand;
 
-class CreateNewArticleFeature extends Dispatcher
+class CreateNewArticleFeature extends BuilderDispatcher
 {
-    public function handle(
-        IlluminateDispatcher $dispatcher,
-        Request $request,
-        ArticleBuilder $builder,
-        Faker $fake
-    ) {
-        $fake = Faker::create();
+    protected $builder = ArticleBuilder::class;
 
-        $title = $fake->sentence;
-
-        $builder->title   = $dispatcher->dispatchFrom(MakeNewTitleCommand::class, $request, compact('title'));
-        $builder->slug    = $dispatcher->dispatchFrom(MakeNewSlugCommand::class, $request, compact('title'));
-        $builder->content = $dispatcher->dispatchFrom(MakeNewContentCommand::class, $request, ['content' => $fake->text]);
-
-        $builder->cover  = $dispatcher->dispatchFrom(MakeNewPhotoCommand::class, $request, ['photo' => $request->input('cover')]);
-        $builder->photos = $dispatcher->dispatchFrom(MakeNewPhotosCollectionCommand::class, $request, ['photos' => []]);
-        $builder->author = $dispatcher->dispatchFrom(FindAuthorByIdCommand::class, $request, ['author_id' => 10]);
-
-        $article = $builder->make();
-
-        $dispatcher->dispatchFromArray(SaveArticleCommand::class, compact('article'));
-    }
+    protected $commands = [
+        'title'   => MakeNewTitleCommand::class,
+        'slug'    => MakeNewSlugCommand::class,
+        'content' => MakeNewContentCommand::class,
+        'cover'   => [MakeNewPhotoCommand::class, ['photo' => 'cover']],
+        'photos'  => MakeNewPhotosCollectionCommand::class,
+        'author'  => FindAuthorByIdCommand::class,
+        'make',
+        SaveArticleCommand::class => 'article',
+    ];
 }

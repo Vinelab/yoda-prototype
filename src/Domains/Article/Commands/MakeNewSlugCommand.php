@@ -8,7 +8,7 @@ use Illuminate\Contracts\Bus\SelfHandling;
 
 class MakeNewSlugCommand extends Command implements SelfHandling
 {
-    public function __construct($title)
+    public function __construct($title = 'command title here')
     {
         $this->slug = $title;
     }

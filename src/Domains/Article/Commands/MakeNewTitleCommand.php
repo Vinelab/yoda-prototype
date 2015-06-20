@@ -8,7 +8,7 @@ use Illuminate\Contracts\Bus\SelfHandling;
 
 class MakeNewTitleCommand extends Command implements SelfHandling
 {
-    public function __construct($title)
+    public function __construct($title = 'command title here')
     {
         $this->title = $title;
     }
