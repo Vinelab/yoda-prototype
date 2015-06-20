@@ -1,3 +1,6 @@
 <?php
 
-Route::get('articles/store', 'Sample\Applications\Cms\Http\Controllers\ArticleController@store');
+Route::group(['namespace' => 'Sample\Applications\Cms\Http\Controllers'], function() {
+    Route::get('articles/create', 'ArticleController@create');
+    Route::post('articles/store', 'ArticleController@store');
+});

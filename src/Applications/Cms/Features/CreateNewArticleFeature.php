@@ -2,8 +2,6 @@
 
 namespace Sample\Applications\Cms\Features;
 
-use Faker\Factory as Faker;
-use Illuminate\Http\Request;
 use Sample\Foundation\BuilderDispatcher;
 use Sample\Domains\Article\ArticleBuilder;
 use Sample\Domains\Core\Commands\BuildCommand;
@@ -26,7 +24,7 @@ class CreateNewArticleFeature extends BuilderDispatcher
         'cover'   => [MakeNewPhotoCommand::class, ['photo' => 'cover']],
         'photos'  => MakeNewPhotosCollectionCommand::class,
         'author'  => FindAuthorByIdCommand::class,
-        'make',
+        BuildCommand::class,
         SaveArticleCommand::class => 'article',
     ];
 }

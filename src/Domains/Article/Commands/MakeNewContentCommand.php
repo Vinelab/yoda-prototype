@@ -6,9 +6,9 @@ use Sample\Foundation\Command;
 use Sample\Domains\Article\Parts\Content;
 use Illuminate\Contracts\Bus\SelfHandling;
 
-class MakeNewContentCommand extends Command implements SelfHandling
+class MakeNewContentCommand extends Command
 {
-    public function __construct($content = 'lots of command content is here')
+    public function __construct($content = '')
     {
         $this->content = $content;
     }

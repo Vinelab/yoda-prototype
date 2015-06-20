@@ -6,7 +6,7 @@ use Sample\Foundation\Command;
 use Sample\Domains\Author\AuthorRepository;
 use Illuminate\Contracts\Bus\SelfHandling;
 
-class FindAuthorByIdCommand extends Command implements SelfHandling
+class FindAuthorByIdCommand extends Command
 {
     public function __construct($author_id = null)
     {

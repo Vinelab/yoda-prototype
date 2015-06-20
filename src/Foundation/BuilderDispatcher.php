@@ -25,29 +25,30 @@ class BuilderDispatcher extends Dispatcher
 
     public function handle(Request $request, IlluminateDispatcher $dispatcher)
     {
-        // the data that willbe passed from a command to another in a default behavior.
-        $data = [];
+        // the data that will be passed from a command to another in a bus behavior.
+        $values = [];
         $builder = $this->newBuilderInstance();
         foreach ($this->getCommands() as $part => $command) {
-            // when the builder has done its job, fallback
-            // to the default dispatcher behavior.
-            if ($this->hasBeenBuilt)
-            {
-                // switch the order
-                $expected = $command;
+            if(!$part) {
+                // we reach here when we have a command alone, which is where we should
+                // extract the parts out of the builder and pass them as 'extras'.
+                $extras = array_merge($builder->toArray(), ['builderInstance' => $builder]);
+                $values = $dispatcher->dispatchFrom($command, $request, $extras);
+            } else if(class_exists($part)) {
+                // when the $part is the command itself, we assume that the dev means
+                // to switch b/w part and command and invoke the command passing the $values
+                // as argument(s) with the argument being as described: i.e. '$command => $argument'.
+                $argument = $command;
                 $command = $part;
-                $values = $dispatcher->dispatchFrom($command, $request, [$expected => $values]);
+                $values = $dispatcher->dispatchFrom($command, $request, [$argument => $values]);
             } else {
                 list($command, $extras) = $this->getExtras($command, $request);
                 // we've received the 'make' signal
-                if (!$part && $command === 'make') {
-                    $this->setHasBeenBuilt(true);
-                    $values = $builder->make();
-                } else {
-                    $builder->$part = $dispatcher->dispatchFrom($command, $request, $extras);
-                }
+                $builder->$part = $dispatcher->dispatchFrom($command, $request, $extras);
             }
         }
+
+        return $values;
     }
 
     protected function getExtras($command, Request $request)
@@ -68,6 +69,11 @@ class BuilderDispatcher extends Dispatcher
         return [$command, $extras];
     }
 
+    /**
+     * Set the hasBeenBuilt attribute.
+     *
+     * @param boolean $built
+     */
     protected function setHasBeenBuilt($built)
     {
         $this->hasBeenBuilt = $built;

@@ -6,7 +6,7 @@ use Sample\Foundation\Command;
 use Sample\Domains\Article\Parts\Title;
 use Illuminate\Contracts\Bus\SelfHandling;
 
-class MakeNewTitleCommand extends Command implements SelfHandling
+class MakeNewTitleCommand extends Command
 {
     public function __construct($title = 'command title here')
     {

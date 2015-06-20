@@ -6,7 +6,7 @@ use Sample\Foundation\Command;
 use Sample\Domains\Article\Parts\Slug;
 use Illuminate\Contracts\Bus\SelfHandling;
 
-class MakeNewSlugCommand extends Command implements SelfHandling
+class MakeNewSlugCommand extends Command
 {
     public function __construct($title = 'command title here')
     {

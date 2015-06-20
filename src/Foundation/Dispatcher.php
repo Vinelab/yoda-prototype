@@ -4,7 +4,6 @@ namespace Sample\Foundation;
 
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Bus\SelfHandling;
-use Illuminate\Contracts\Bus\Dispatcher as IlluminateDispatcher;
 
 /**
  * Dispatches given instances passing required arguments.

@@ -7,7 +7,7 @@ use Sample\Domains\Photo\PhotoFactory;
 use Sample\Domains\Photo\PhotosCollection;
 use Illuminate\Contracts\Bus\SelfHandling;
 
-class MakeNewPhotosCollectionCommand extends Command implements SelfHandling
+class MakeNewPhotosCollectionCommand extends Command
 {
     public function __construct($photos = [])
     {
