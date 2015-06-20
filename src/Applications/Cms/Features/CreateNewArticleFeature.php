@@ -6,8 +6,8 @@ use Faker\Factory as Faker;
 use Illuminate\Http\Request;
 use Sample\Foundation\Dispatcher;
 use Sample\Domains\Article\ArticleBuilder;
-use Sample\Domains\Article\ArticleRepository;
 use Sample\Domains\Photo\Commands\MakeNewPhotoCommand;
+use Sample\Domains\Article\Commands\SaveArticleCommand;
 use Sample\Domains\Article\Commands\MakeNewSlugCommand;
 use Sample\Domains\Article\Commands\MakeNewTitleCommand;
 use Sample\Domains\Author\Commands\FindAuthorByIdCommand;
@@ -21,7 +21,6 @@ class CreateNewArticleFeature extends Dispatcher
         IlluminateDispatcher $dispatcher,
         Request $request,
         ArticleBuilder $builder,
-        ArticleRepository $articles,
         Faker $fake
     ) {
         $fake = Faker::create();
@@ -36,6 +35,8 @@ class CreateNewArticleFeature extends Dispatcher
         $builder->photos = $dispatcher->dispatchFrom(MakeNewPhotosCollectionCommand::class, $request, ['photos' => []]);
         $builder->author = $dispatcher->dispatchFrom(FindAuthorByIdCommand::class, $request, ['author_id' => 10]);
 
-        $articles->add($builder->make());
+        $article = $builder->make();
+
+        $dispatcher->dispatchFromArray(SaveArticleCommand::class, compact('article'));
     }
 }

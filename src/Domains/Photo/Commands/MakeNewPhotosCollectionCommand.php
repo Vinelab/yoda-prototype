@@ -9,7 +9,7 @@ use Illuminate\Contracts\Bus\SelfHandling;
 
 class MakeNewPhotosCollectionCommand extends Command implements SelfHandling
 {
-    public function __construct($photos)
+    public function __construct($photos = [])
     {
         $this->photos = $photos;
     }
