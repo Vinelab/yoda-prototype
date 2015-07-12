@@ -1,0 +1,5 @@
+default:
+    suites:
+        cms:
+            paths: [src/Applications/Cms/Tests/features]
+            contexts: [Sample\Applications\Cms\Tests\CmsContext]
