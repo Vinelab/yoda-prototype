@@ -8,6 +8,6 @@ class ArticleRepository
 {
     public function add(Article $article)
     {
-        dd('Saving This Article', $article);
+        return $article;
     }
 }
